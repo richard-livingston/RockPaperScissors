@@ -20,6 +20,12 @@ html, body{
 }
 
 
+#rps canvas{
+    width: 80%;
+    height: auto;
+}
+
+
 /*--- TOP BAR ---*/
 /*---------------*/
 
