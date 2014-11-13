@@ -13,6 +13,8 @@ var rps = rps || {};
      * @constructor
      */
     function HandView(type, direction){
+        createjs.Container.call(this);
+
         if(!~['rock', 'paper', 'scissors'].indexOf(type)){
             throw new Error('Hand type should be either rock, paper, scissors: ' + type);
         }
