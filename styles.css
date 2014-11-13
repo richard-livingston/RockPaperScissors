@@ -1,12 +1,103 @@
+/*--- GENERAL HTML ---*/
+/*--------------------*/
+
 html, body{
     width: 100%;
     height: 100%;
     margin: 0px;
     padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/*--- MAIN CONTAINER ---*/
+/*----------------------*/
 
 #rps{
     width: 100%;
     height: 100%;
     background: url("images/background.png") repeat;
+}
+
+
+/*--- TOP BAR ---*/
+/*---------------*/
+
+#rps .topBar{
+    width: 100%;
+    height: 94px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    background: rgb(51, 51, 51);
+    background: rgba(51, 51, 51, 0.6);
+}
+
+#rps .topBar label{
+    color: #FFF;
+    font-size: 30px;
+}
+
+#rps .topBar label::after{
+    content: ': ';
+}
+
+/* Bets and balance fields */
+
+#rps .topBar .bets{
+    margin: 20px 0px 0px 20px;
+    float: left;
+}
+
+#rps .topBar .balance{
+    margin: 20px 20px 0px 0px;
+    float: right;
+}
+
+#rps .topBar .field{
+    width: 180px;
+    height: 60px;
+    line-height: 60px;
+    display: inline-block;
+    vertical-align: middle;
+    color: #000;
+    font-size: 30px;
+    text-align: center;
+    background: no-repeat;
+}
+
+#rps .topBar .field::before{
+    content: '£';
+}
+
+#rps .topBar .bets .field{
+    background-image: url("images/fields/bets.png");
+}
+
+#rps .topBar .balance .field{
+    background-image: url("images/fields/balance.png");
+}
+
+/* Bets up/down controls */
+
+#rps .topBar .control{
+    width: 45px;
+    height: 46px;
+    display: inline-block;
+    vertical-align: middle;
+    background: no-repeat;
+    cursor: pointer;
+}
+
+#rps .topBar .control.disabled{
+    cursor: default;
+    opacity: 0.2;
+}
+
+#rps .topBar .bets .control.up{
+    margin-left: 15px;
+    background-image: url("images/fields/betsArrowUp.png");
+ }
+
+#rps .topBar .bets .control.down{
+    background-image: url("images/fields/betsArrowDown.png");
 }
