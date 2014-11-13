@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors</title>
+    <script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
+    <script src="src/assetsManifest.js"></script>
+    <script src="src/Game.js"></script>
+    <script src="src/HandView.js"></script>
+
+    <script>
+        function initGame(){
+            var stage = new createjs.Stage('rps');
+
+            rps.assets.addEventListener('complete', function(){
+                new rps.Game(stage);
+            });
+        }
+    </script>
+</head>
+<body onload="initGame()">
+    <canvas id="rps" width="800" height="400"></canvas>
+</body>
+</html>
