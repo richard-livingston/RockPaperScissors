@@ -7,16 +7,16 @@
     <link rel="stylesheet" href="styles.css">
 
     <script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
     <script src="src/assetsManifest.js"></script>
     <script src="src/Game.js"></script>
     <script src="src/HandView.js"></script>
 
     <script>
         function initGame(){
-            var stage = new createjs.Stage('rpsCanvas');
-
             rps.assets.addEventListener('complete', function(){
-                new rps.Game(stage);
+                new rps.Game($('#rps'));
             });
         }
     </script>
@@ -35,7 +35,7 @@
                 <div class="field">0.00</div>
             </div>
         </div>
-        <canvas id="rpsCanvas" width="800" height="400"></canvas>
+        <canvas width="800" height="400"></canvas>
     </div>
 </body>
 </html>
