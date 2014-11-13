@@ -14,10 +14,10 @@ var rps = rps || {};
      */
     rps.Game = function Game(element){
 
-        var stage = new createjs.Stage(element.find('canvas')[0]);
-        var hand = new rps.HandView('paper', 'right');
+        var stage = rps.stage = new createjs.Stage(element.find('canvas')[0]);
+        var gameStartView = new rps.GameStartView();
 
-        stage.addChild(hand);
+        stage.addChild(gameStartView);
         stage.update();
     }
 
