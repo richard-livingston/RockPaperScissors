@@ -30,6 +30,10 @@ var rps = rps || {};
         scissors.x = paper.x + paper.getBounds().width + 20;
         rock.y = paper.y = scissors.y = 50;
 
+        rock.throbbingAnimation();
+        paper.throbbingAnimation();
+        scissors.throbbingAnimation();
+
         this.addChild(rock);
         this.addChild(paper);
         this.addChild(scissors);
