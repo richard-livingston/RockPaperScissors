@@ -31,6 +31,11 @@
             return _betAmount;
         });
 
+        var _roundWinnings = 0;
+        this.__defineGetter__('roundWinnings', function(){
+            return _roundWinnings;
+        });
+
         var _balance = 0;
         this.__defineGetter__('balance', function(){
             return _balance;
@@ -63,11 +68,20 @@
 
             _balance -= _betAmount;
             _playersMove = playersMove;
-            _computersMove = moves[Math.floor(Math.random() * moves.length)];
+            _computersMove = moves[Math.floor(Math.random() * 3)];
+
+            // Calculate winnings
+            var playerWins =
+                (_computersMove == 'rock' && _playersMove == 'paper') ||
+                (_computersMove == 'paper' && _playersMove == 'scissors') ||
+                (_computersMove == 'scissors' && _playersMove == 'rock');
+
+            _balance += _roundWinnings = (playerWins ? _betAmount * 3 : 0);
 
             notifyPropertyChanged('balance');
             notifyPropertyChanged('playersMove');
             notifyPropertyChanged('computersMove');
+            notifyPropertyChanged('roundWinnings');
 
             return true;
         };
