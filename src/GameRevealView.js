@@ -19,13 +19,20 @@
         var computersHand,
             playersHand;
 
+        var restartText = new createjs.Bitmap(rps.assets.getResult('text/restart'));
+
         this.addEventListener('addedToStage', function onAddedToStage(event){
             displayHands(game.model.computersMove, game.model.playersMove);
+            displayRestartText();
         });
 
         this.addEventListener('removedFromStage', function onRemovedFromStage(event){
             computersHand && self.removeChild(computersHand);
             playersHand && self.removeChild(playersHand);
+        });
+
+        this.addEventListener('click', function onClick(event){
+            game.restart();
         });
 
         function displayHands(computer, player){
@@ -38,6 +45,13 @@
 
             self.addChild(computersHand);
             self.addChild(playersHand);
+            game.stage.update();
+        }
+
+        function displayRestartText(){
+            restartText.x = (game.stage.canvas.width - restartText.image.width) / 2;
+            restartText.y = game.stage.canvas.height - restartText.image.height;
+            self.addChild(restartText);
             game.stage.update();
         }
     }
