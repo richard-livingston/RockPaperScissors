@@ -38,11 +38,23 @@ var rps = rps || {};
         this.addChild(paper);
         this.addChild(scissors);
 
-        // Position and add the instructions text
+        // Add the instructions text
         var beginGameText = new createjs.Bitmap(rps.assets.getResult('text/begin'));
-        beginGameText.x = (game.stage.canvas.width - beginGameText.image.width) / 2;
-        beginGameText.y = game.stage.canvas.height - beginGameText.image.height;
         this.addChild(beginGameText);
+
+        // Animate the text when the view is added
+        this.addEventListener('addedToStage', function onAddedToStage(){
+            beginGameText.x = game.stage.canvas.width / 2;
+            beginGameText.y = game.stage.canvas.height;
+            beginGameText.scaleX = beginGameText.scaleY = 0;
+
+            createjs.Tween.get(beginGameText).to({
+                x : beginGameText.x - beginGameText.image.width / 2,
+                y : beginGameText.y - beginGameText.image.height,
+                scaleX : 1,
+                scaleY : 1
+            }, 600);
+        });
 
         // Listen for hand clicks
         rock.addEventListener('click', onHandClick);
