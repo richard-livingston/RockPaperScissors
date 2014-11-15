@@ -25,7 +25,7 @@ var rps = rps || {};
         var totalWidth = rock.getBounds().width + paper.getBounds().width + scissors.getBounds().width + 40; /* 20 padding between each */
 
         // Position and add the hands selection
-        rock.x = rps.stage.canvas.width - totalWidth;
+        rock.x = game.stage.canvas.width - totalWidth;
         paper.x = rock.x + rock.getBounds().width + 20;
         scissors.x = paper.x + paper.getBounds().width + 20;
         rock.y = paper.y = scissors.y = 50;
@@ -36,8 +36,8 @@ var rps = rps || {};
 
         // Position and add the instructions text
         var beginGameText = new createjs.Bitmap(rps.assets.getResult('text/begin'));
-        beginGameText.x = (rps.stage.canvas.width - beginGameText.image.width) / 2;
-        beginGameText.y = rps.stage.canvas.height - beginGameText.image.height;
+        beginGameText.x = (game.stage.canvas.width - beginGameText.image.width) / 2;
+        beginGameText.y = game.stage.canvas.height - beginGameText.image.height;
         this.addChild(beginGameText);
 
         // Listen for hand clicks
