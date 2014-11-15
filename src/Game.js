@@ -14,16 +14,29 @@ var rps = rps || {};
      */
     rps.Game = function Game(element){
 
-        var stage = rps.stage = new createjs.Stage(element.find('canvas')[0]);
-        var gameStartView = new rps.GameStartView();
+        var self = this;
 
-        stage.addChild(gameStartView);
-        stage.update();
+        var stage = rps.stage = new createjs.Stage(element.find('canvas')[0]),
+            model = this.model = new rps.GameModel(),
+            gameStartView = new rps.GameStartView(this);
 
+        switchView(gameStartView);
         stage.addEventListener('handSelected', onHandSelected);
 
         function onHandSelected(event){
-            console.log(event);
+            if(model.newRound(event.selection)){
+
+            }
+        };
+
+        var currentView;
+        function switchView(view){
+            if(currentView && currentView != view){
+                stage.removeChild(currentView);
+            }
+
+            stage.addChild(currentView = view);
+            stage.update();
         };
     }
 

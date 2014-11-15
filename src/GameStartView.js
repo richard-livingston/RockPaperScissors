@@ -9,9 +9,10 @@ var rps = rps || {};
     /**
      * This view is the first screen of the game, it gives the user a choice of bet (rock, paper, scissors)
      *
+     * @param {Game} game Current game instance
      * @constructor
      */
-    function GameStartView(){
+    function GameStartView(game){
         createjs.Container.call(this);
 
         var self = this;
