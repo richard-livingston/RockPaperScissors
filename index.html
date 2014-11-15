@@ -22,6 +22,18 @@
                 new rps.Game($('#rps'));
             });
         }
+
+        // Scrolling background animation
+        $(function(){
+            function animateBackgroundImage(){
+                $('#rps').animate({
+                    backgroundPositionX : (Math.floor(Math.random() * 2) ? '-' : '+') + '=932px',
+                    backgroundPositionY : '-=554px'
+                }, 18000, 'linear', animateBackgroundImage);
+            }
+
+            animateBackgroundImage();
+        });
     </script>
 </head>
 <body onload="initGame()">
