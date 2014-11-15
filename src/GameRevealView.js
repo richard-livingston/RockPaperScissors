@@ -31,9 +31,15 @@
             playersHand && self.removeChild(playersHand);
         });
 
+        // Start a new round on click anywhere
         this.addEventListener('click', function onClick(event){
             game.restart();
         });
+
+        // Set hit area so that even transparent areas register a click
+        this.hitArea = new createjs.Shape();
+        this.hitArea.graphics.beginFill('#000000');
+        this.hitArea.graphics.drawRect(this.x, this.y, game.stage.canvas.width, game.stage.canvas.height);
 
         function displayHands(computer, player){
             computersHand = new rps.HandView(game.model.computersMove, 'right');
