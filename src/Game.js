@@ -34,10 +34,13 @@ var rps = rps || {};
         function switchView(view){
             if(currentView && currentView != view){
                 stage.removeChild(currentView);
+                view.dispatchEvent('removedFromStage');
             }
 
             stage.addChild(currentView = view);
             stage.update();
+
+            view.dispatchEvent('addedToStage');
         };
     }
 
