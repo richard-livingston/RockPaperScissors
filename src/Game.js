@@ -23,13 +23,7 @@ var rps = rps || {};
 
         switchView(gameStartView);
         stage.addEventListener('handSelected', onHandSelected);
-
-        /**
-         * Restart the game, return to first view
-         */
-        this.restart = function restart(){
-            switchView(gameStartView);
-        };
+        gameRevealView.addEventListener('restart', switchView.bind(null, gameStartView));
 
         function onHandSelected(event){
             if(model.newRound(event.selection)){

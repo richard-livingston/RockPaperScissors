@@ -33,7 +33,7 @@
 
         // Start a new round on click anywhere
         this.addEventListener('click', function onClick(event){
-            game.restart();
+            self.dispatchEvent(new createjs.Event('restart'), true, true);
         });
 
         // Set hit area so that even transparent areas register a click
