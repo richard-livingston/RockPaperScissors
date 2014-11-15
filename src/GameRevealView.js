@@ -47,20 +47,28 @@ var rps = rps || {};
             computersHand = new rps.HandView(game.model.computersMove, 'right');
             playersHand = new rps.HandView(game.model.playersMove, 'left');
 
-            computersHand.x = 0;
-            playersHand.x = game.stage.canvas.width - playersHand.getBounds().width;
+            computersHand.x = -computersHand.getBounds().width;
+            playersHand.x = game.stage.canvas.width;
             computersHand.y = playersHand.y = 50;
+
+            createjs.Tween.get(computersHand).to({x : 0}, 400);
+            createjs.Tween.get(playersHand).to({x : playersHand.x - playersHand.getBounds().width}, 400);
 
             self.addChild(computersHand);
             self.addChild(playersHand);
-            game.stage.update();
         }
 
         function displayRestartText(){
             restartText.x = (game.stage.canvas.width - restartText.image.width) / 2;
-            restartText.y = game.stage.canvas.height - restartText.image.height;
+            restartText.y = - restartText.image.height;
+
+            createjs.Tween.get(restartText)
+                .wait(600)
+                .to({
+                    y : game.stage.canvas.height - restartText.image.height
+                }, 1000, createjs.Ease.bounceOut);
+
             self.addChild(restartText);
-            game.stage.update();
         }
     }
 
