@@ -18,14 +18,15 @@ var rps = rps || {};
 
         var stage = this.stage = new createjs.Stage(element.find('canvas')[0]),
             model = this.model = new rps.GameModel(),
-            gameStartView = new rps.GameStartView(this);
+            gameStartView = new rps.GameStartView(this),
+            gameRevealView = new rps.GameRevealView(this);
 
         switchView(gameStartView);
         stage.addEventListener('handSelected', onHandSelected);
 
         function onHandSelected(event){
             if(model.newRound(event.selection)){
-
+                switchView(gameRevealView);
             }
         };
 
