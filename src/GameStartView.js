@@ -40,13 +40,14 @@ var rps = rps || {};
 
         // Add the instructions text
         var beginGameText = new createjs.Bitmap(rps.assets.getResult('text/begin'));
-        this.addChild(beginGameText);
 
         // Animate the text when the view is added
         this.addEventListener('addedToStage', function onAddedToStage(){
             beginGameText.x = game.stage.canvas.width / 2;
             beginGameText.y = game.stage.canvas.height;
             beginGameText.scaleX = beginGameText.scaleY = 0;
+
+            self.addChild(beginGameText);
 
             createjs.Tween.get(beginGameText).to({
                 x : beginGameText.x - beginGameText.image.width / 2,
