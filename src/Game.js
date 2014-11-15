@@ -21,6 +21,8 @@ var rps = rps || {};
             gameStartView = new rps.GameStartView(this),
             gameRevealView = new rps.GameRevealView(this);
 
+        createjs.Ticker.addEventListener('tick', stage);
+
         switchView(gameStartView);
         stage.addEventListener('handSelected', onHandSelected);
         gameRevealView.addEventListener('restart', switchView.bind(null, gameStartView));
