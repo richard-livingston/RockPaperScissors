@@ -2,6 +2,8 @@
  * Created by Richard on 15/11/2014.
  */
 
+var rps = rps || {};
+
 (function(){
 
     /**
