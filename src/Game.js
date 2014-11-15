@@ -19,6 +19,12 @@ var rps = rps || {};
 
         stage.addChild(gameStartView);
         stage.update();
+
+        stage.addEventListener('handSelected', onHandSelected);
+
+        function onHandSelected(event){
+            console.log(event);
+        };
     }
 
 })();

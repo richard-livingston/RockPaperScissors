@@ -11,8 +11,10 @@ var rps = rps || {};
      *
      * @constructor
      */
-    rps.GameStartView = function GameStartView(){
+    function GameStartView(){
         createjs.Container.call(this);
+
+        var self = this;
 
         var rock = new rps.HandView('rock'),
             paper = new rps.HandView('paper'),
@@ -36,8 +38,21 @@ var rps = rps || {};
         beginGameText.x = (rps.stage.canvas.width - beginGameText.image.width) / 2;
         beginGameText.y = rps.stage.canvas.height - beginGameText.image.height;
         this.addChild(beginGameText);
+
+        // Listen for hand clicks
+        rock.addEventListener('click', onHandClick);
+        paper.addEventListener('click', onHandClick);
+        scissors.addEventListener('click', onHandClick);
+
+        function onHandClick(event){
+            var e = new createjs.Event('handSelected', true, true);
+
+            e.selection = event.currentTarget.type;
+            self.dispatchEvent(e);
+        };
     };
 
-    rps.GameStartView.prototype = new createjs.Container();
+    GameStartView.prototype = new createjs.Container();
+    rps.GameStartView = GameStartView;
 
 })();
