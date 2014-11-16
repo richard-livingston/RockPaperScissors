@@ -33,6 +33,21 @@ var rps = rps || {};
             return _betAmount;
         });
 
+        this.__defineSetter__('betAmount', function(value){
+            if(value % 1 != 0){
+                throw new TypeError('Bet amount must be an integer');
+            }
+
+            if(value < 0){
+                _betAmount = 0;
+            }
+            else if(value <= _balance){
+                _betAmount = value;
+            }
+
+            notifyPropertyChanged('betAmount');
+        });
+
         var _roundWinnings = 0;
         this.__defineGetter__('roundWinnings', function(){
             return _roundWinnings;
