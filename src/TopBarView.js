@@ -25,10 +25,9 @@ var rps = rps || {};
          * @param {bool} disabled True to disable, false to enable
          */
         this.roundInProgress = function roundInProgress(inProgress){
-            var controls = betControlDown.add(betControlUp);
             isRoundInProgress = inProgress;
 
-            controls[inProgress ? 'addClass' : 'removeClass']('disabled');
+            disableBetControls(inProgress);
             updateFields();
         };
 
@@ -48,12 +47,19 @@ var rps = rps || {};
             }
         });
 
+        function disableBetControls(disabled){
+            var controls = betControlDown.add(betControlUp);
+            controls[disabled ? 'addClass' : 'removeClass']('disabled');
+        }
+
         function updateFields(){
             balanceField.text(((isRoundInProgress ? previousBalance - m.betAmount : m.balance) / 100).toFixed(2));
 
             if(!isRoundInProgress){
                 betsField.text((m.betAmount / 100).toFixed(2));
                 previousBalance = m.balance;
+
+                disableBetControls(m.balance == 0);
             }
         }
     };
