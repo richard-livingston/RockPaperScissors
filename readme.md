@@ -2,6 +2,10 @@
 
 Rock paper scissors game with betting layer for mobile web, built for HTML5 with [CreateJS](http://www.createjs.com/#!/CreateJS)
 
+## Demo
+
+ - http://rockpaperscissors.iwrite.codes
+
 ## Images
 
  - **Background** - http://wallfortuner.com/background-pattern-25-43210-background-hd.html
