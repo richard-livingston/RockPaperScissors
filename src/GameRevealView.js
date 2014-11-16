@@ -18,6 +18,8 @@ var rps = rps || {};
 
         var self = this;
 
+        var finishedPlaying = false;
+
         var computersHand,
             playersHand;
 
@@ -27,6 +29,8 @@ var rps = rps || {};
             drawText = new createjs.Bitmap(rps.assets.getResult('text/draw'));
 
         this.addEventListener('addedToStage', function onAddedToStage(event){
+            finishedPlaying = false;
+
             displayHands(game.model.computersMove, game.model.playersMove);
             displayWinMessageText();
             displayRestartText();
@@ -38,7 +42,9 @@ var rps = rps || {};
 
         // Start a new round on click anywhere
         this.addEventListener('click', function onClick(event){
-            self.dispatchEvent(new createjs.Event('restart'), true, true);
+            if(finishedPlaying){
+                self.dispatchEvent(new createjs.Event('restart'), true, true);
+            }
         });
 
         // Set hit area so that even transparent areas register a click
@@ -102,7 +108,11 @@ var rps = rps || {};
                 .wait(1500)
                 .to({
                     y : game.stage.canvas.height - restartText.image.height
-                }, 1000, createjs.Ease.bounceOut);
+                }, 1000, createjs.Ease.bounceOut)
+
+                .call(function onDisplayRestartTextFinished(){
+                    finishedPlaying = true;
+                });
 
             self.addChild(restartText);
         }
