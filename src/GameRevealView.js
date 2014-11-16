@@ -23,7 +23,8 @@ var rps = rps || {};
 
         var restartText = new createjs.Bitmap(rps.assets.getResult('text/restart')),
             winText = new createjs.Bitmap(rps.assets.getResult('text/win')),
-            loseText = new createjs.Bitmap(rps.assets.getResult('text/lose'));
+            loseText = new createjs.Bitmap(rps.assets.getResult('text/lose')),
+            drawText = new createjs.Bitmap(rps.assets.getResult('text/draw'));
 
         this.addEventListener('addedToStage', function onAddedToStage(event){
             displayHands(game.model.computersMove, game.model.playersMove);
@@ -61,7 +62,21 @@ var rps = rps || {};
         }
 
         function displayWinMessageText(){
-            var image = game.model.roundWinnings ? winText : loseText;
+            var image;
+
+            switch(game.model.roundWinnings){
+                case 0:
+                    image = loseText;
+                    break;
+
+                case game.model.betAmount:
+                    image = drawText;
+                    break;
+
+                default:
+                    image = winText;
+                    break;
+            }
 
             image.scaleX = image.scaleY = 0;
             image.x = game.stage.canvas.width / 2;

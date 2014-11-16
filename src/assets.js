@@ -14,7 +14,8 @@ var rps = rps || {};
         {id : 'text/begin', src : 'images/text/begin.png'},
         {id : 'text/restart', src : 'images/text/restart.png'},
         {id : 'text/win', src : 'images/text/win.png'},
-        {id : 'text/lose', src : 'images/text/lose.png'}
+        {id : 'text/lose', src : 'images/text/lose.png'},
+        {id : 'text/draw', src : 'images/text/draw.png'}
     ]);
 
     rps.assets = queue;
