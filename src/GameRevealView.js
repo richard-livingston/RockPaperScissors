@@ -23,14 +23,15 @@ var rps = rps || {};
         var restartText = new createjs.Bitmap(rps.assets.getResult('text/restart')),
             winText = new createjs.Bitmap(rps.assets.getResult('text/win')),
             loseText = new createjs.Bitmap(rps.assets.getResult('text/lose')),
-            drawText = new createjs.Bitmap(rps.assets.getResult('text/draw'));
+            drawText = new createjs.Bitmap(rps.assets.getResult('text/draw')),
+            gameOverText = new createjs.Bitmap(rps.assets.getResult('text/gameOver'));
 
         this.addEventListener('addedToStage', playAnimation);
         this.addEventListener('removedFromStage', this.removeAllChildren.bind(this));
 
         // Start a new round on click anywhere
         this.addEventListener('click', function onClick(event){
-            if(finishedPlaying){
+            if(finishedPlaying && game.model.balance){
                 self.dispatchEvent(new createjs.Event('restart'), true, true);
             }
         });
@@ -46,7 +47,7 @@ var rps = rps || {};
             displayHand(new rps.HandView(game.model.computersMove, 'right')).setPaused(false);
             displayHand(new rps.HandView(game.model.playersMove, 'left')).setPaused(false)
                 .play(displayWinMessageText()
-                    .play(displayRestartText()
+                    .play(displayBottomText()
                         .call(function onDisplayRestartTextFinished(){
                             self.dispatchEvent('finishedPlaying');
                             finishedPlaying = true;
@@ -99,16 +100,18 @@ var rps = rps || {};
                 }, 500);
         }
 
-        function displayRestartText(){
-            restartText.x = (game.stage.canvas.width - restartText.image.width) / 2;
-            restartText.y = - restartText.image.height;
+        function displayBottomText(){
+            var text = game.model.balance > 0 ? restartText : gameOverText;
 
-            self.addChild(restartText);
+            text.x = (game.stage.canvas.width - text.image.width) / 2;
+            text.y = - text.image.height;
 
-            return createjs.Tween.get(restartText, {paused : true})
+            self.addChild(text);
+
+            return createjs.Tween.get(text, {paused : true})
                 .wait(200)
                 .to({
-                    y : game.stage.canvas.height - restartText.image.height
+                    y : game.stage.canvas.height - text.image.height
                 }, 1000, createjs.Ease.bounceOut);
         }
     }
