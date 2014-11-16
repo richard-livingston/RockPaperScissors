@@ -57,6 +57,9 @@ var rps = rps || {};
             }, 600);
         });
 
+        // Remove beginGameText when view is closed
+        this.addEventListener('removedFromStage', this.removeChild.bind(this, beginGameText));
+
         // Listen for hand clicks
         rock.addEventListener('click', onHandClick);
         paper.addEventListener('click', onHandClick);
