@@ -78,7 +78,17 @@ var rps = rps || {};
                 (_computersMove == 'paper' && _playersMove == 'scissors') ||
                 (_computersMove == 'scissors' && _playersMove == 'rock');
 
-            _balance += _roundWinnings = (playerWins ? _betAmount * 3 : 0);
+            if(_computersMove == _playersMove){
+                _roundWinnings = _betAmount;
+            }
+            else if(playerWins){
+                _roundWinnings = _betAmount * 3;
+            }
+            else{
+                _roundWinnings = 0;
+            }
+
+            _balance += _roundWinnings;
 
             notifyPropertyChanged('balance');
             notifyPropertyChanged('playersMove');
