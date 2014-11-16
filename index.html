@@ -18,14 +18,12 @@
     <script src="src/GameRevealView.js"></script>
 
     <script>
-        function initGame(){
+        // Scrolling background animation
+        $(function(){
             rps.assets.addEventListener('complete', function(){
                 new rps.Game($('#rps'));
             });
-        }
 
-        // Scrolling background animation
-        $(function(){
             function animateBackgroundImage(){
                 $('#rps').animate({
                     backgroundPositionX : (Math.floor(Math.random() * 2) ? '-' : '+') + '=932px',
@@ -40,7 +38,7 @@
         });
     </script>
 </head>
-<body onload="initGame()">
+<body>
     <div id="rps" align="center">
         <div class="topBar">
             <div class="bets">
