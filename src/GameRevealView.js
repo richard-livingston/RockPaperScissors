@@ -21,16 +21,18 @@ var rps = rps || {};
         var computersHand,
             playersHand;
 
-        var restartText = new createjs.Bitmap(rps.assets.getResult('text/restart'));
+        var restartText = new createjs.Bitmap(rps.assets.getResult('text/restart')),
+            winText = new createjs.Bitmap(rps.assets.getResult('text/win')),
+            loseText = new createjs.Bitmap(rps.assets.getResult('text/lose'));
 
         this.addEventListener('addedToStage', function onAddedToStage(event){
             displayHands(game.model.computersMove, game.model.playersMove);
+            displayWinMessageText();
             displayRestartText();
         });
 
         this.addEventListener('removedFromStage', function onRemovedFromStage(event){
-            computersHand && self.removeChild(computersHand);
-            playersHand && self.removeChild(playersHand);
+            self.removeAllChildren();
         });
 
         // Start a new round on click anywhere
@@ -58,12 +60,31 @@ var rps = rps || {};
             self.addChild(playersHand);
         }
 
+        function displayWinMessageText(){
+            var image = game.model.roundWinnings ? winText : loseText;
+
+            image.scaleX = image.scaleY = 0;
+            image.x = game.stage.canvas.width / 2;
+            image.y = game.stage.canvas.height / 2;
+
+            createjs.Tween.get(image)
+                .wait(600)
+                .to({
+                    scaleX : 1,
+                    scaleY : 1,
+                    x : image.x - image.image.width / 2,
+                    y : image.y - image.image.height / 2
+                }, 500);
+
+            self.addChild(image);
+        }
+
         function displayRestartText(){
             restartText.x = (game.stage.canvas.width - restartText.image.width) / 2;
             restartText.y = - restartText.image.height;
 
             createjs.Tween.get(restartText)
-                .wait(600)
+                .wait(1500)
                 .to({
                     y : game.stage.canvas.height - restartText.image.height
                 }, 1000, createjs.Ease.bounceOut);

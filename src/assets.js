@@ -12,7 +12,9 @@ var rps = rps || {};
         {id : 'hand/paper', src : 'images/hand/paper.png'},
         {id : 'hand/scissors', src : 'images/hand/scissors.png'},
         {id : 'text/begin', src : 'images/text/begin.png'},
-        {id : 'text/restart', src : 'images/text/restart.png'}
+        {id : 'text/restart', src : 'images/text/restart.png'},
+        {id : 'text/win', src : 'images/text/win.png'},
+        {id : 'text/lose', src : 'images/text/lose.png'}
     ]);
 
     rps.assets = queue;
