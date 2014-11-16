@@ -44,8 +44,8 @@ var rps = rps || {};
         function playAnimation(){
             finishedPlaying = false;
 
-            displayHand(new rps.HandView(game.model.computersMove, 'right')).setPaused(false);
-            displayHand(new rps.HandView(game.model.playersMove, 'left')).setPaused(false)
+            displayHand(new rps.Hand(game.model.computersMove, 'right')).setPaused(false);
+            displayHand(new rps.Hand(game.model.playersMove, 'left')).setPaused(false)
                 .play(displayWinMessageText()
                     .play(displayBottomText()
                         .call(function onDisplayRestartTextFinished(){

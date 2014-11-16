@@ -20,7 +20,7 @@ var rps = rps || {};
 
         var stage = this.stage = new createjs.Stage(element.find('canvas')[0]),
             model = this.model = new rps.GameModel(),
-            topBarView = new rps.TopBarView(this),
+            topBar = new rps.TopBar(this),
             gameStartView = new rps.GameStartView(this),
             gameRevealView = new rps.GameRevealView(this);
 
@@ -32,17 +32,17 @@ var rps = rps || {};
 
         switchView(gameStartView);
         stage.addEventListener('handSelected', onHandSelected);
-        gameRevealView.addEventListener('finishedPlaying', topBarView.roundInProgress.bind(topBarView, false));
+        gameRevealView.addEventListener('finishedPlaying', topBar.roundInProgress.bind(topBar, false));
         gameRevealView.addEventListener('restart', switchView.bind(null, gameStartView));
 
         function onHandSelected(event){
-            topBarView.roundInProgress(true);
+            topBar.roundInProgress(true);
 
             if(model.newRound(event.selection)){
                 switchView(gameRevealView);
             }
             else{
-               topBarView.roundInProgress(false);
+               topBar.roundInProgress(false);
             }
         };
 

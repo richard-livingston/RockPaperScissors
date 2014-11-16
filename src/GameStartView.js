@@ -17,9 +17,9 @@ var rps = rps || {};
 
         var self = this;
 
-        var rock = new rps.HandView('rock'),
-            paper = new rps.HandView('paper'),
-            scissors = new rps.HandView('scissors');
+        var rock = new rps.Hand('rock'),
+            paper = new rps.Hand('paper'),
+            scissors = new rps.Hand('scissors');
 
         // Width of all elements is not exactly the same
         var totalWidth = rock.getBounds().width + paper.getBounds().width + scissors.getBounds().width + 40; /* 20 padding between each */

@@ -12,7 +12,7 @@ var rps = rps || {};
      * @param {Game} game Current game instance
      * @constructor
      */
-    function TopBarView(game){
+    function TopBar(game){
 
         var topBar = $('.topBar', game.element),
             betsField = $('.bets .field', topBar),
@@ -72,6 +72,6 @@ var rps = rps || {};
     };
 
 
-    rps.TopBarView = TopBarView;
+    rps.TopBar = TopBar;
 
 })();

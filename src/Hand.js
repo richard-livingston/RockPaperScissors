@@ -12,7 +12,7 @@ var rps = rps || {};
      * @param {string} [direction=left] Either left or right. The direction that the hand points towards
      * @constructor
      */
-    function HandView(type, direction){
+    function Hand(type, direction){
         createjs.Container.call(this);
 
         this.type = type;
@@ -45,8 +45,8 @@ var rps = rps || {};
         this.addChild(handImage);
     }
 
-    HandView.prototype = new createjs.Container();
+    Hand.prototype = new createjs.Container();
 
-    rps.HandView = HandView;
+    rps.Hand = Hand;
 
 })();
