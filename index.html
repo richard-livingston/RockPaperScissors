@@ -31,6 +31,9 @@
                     backgroundPositionX : (Math.floor(Math.random() * 2) ? '-' : '+') + '=932px',
                     backgroundPositionY : '-=554px'
                 }, 18000, 'linear', animateBackgroundImage);
+
+                // 932 and 554 are the dimensions of the background image. Cannot scroll less than these dimensions in
+                // IE, or the animation appears jumpy.
             }
 
             animateBackgroundImage();
