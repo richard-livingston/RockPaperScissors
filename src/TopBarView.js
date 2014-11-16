@@ -50,9 +50,9 @@ var rps = rps || {};
 
         function updateFields(){
             balanceField.text(((isRoundInProgress ? previousBalance - m.betAmount : m.balance) / 100).toFixed(2));
-            betsField.text((m.betAmount / 100).toFixed(2));
 
             if(!isRoundInProgress){
+                betsField.text((m.betAmount / 100).toFixed(2));
                 previousBalance = m.balance;
             }
         }

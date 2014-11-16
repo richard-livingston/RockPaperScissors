@@ -105,7 +105,13 @@ var rps = rps || {};
 
             _balance += _roundWinnings;
 
+            // Next bet amount cannot exceed balance
+            if(_betAmount > _balance){
+                _betAmount = _balance;
+            }
+
             notifyPropertyChanged('balance');
+            notifyPropertyChanged('betAmount');
             notifyPropertyChanged('playersMove');
             notifyPropertyChanged('computersMove');
             notifyPropertyChanged('roundWinnings');
