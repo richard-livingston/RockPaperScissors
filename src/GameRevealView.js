@@ -48,6 +48,7 @@ var rps = rps || {};
                 .play(displayWinMessageText()
                     .play(displayRestartText()
                         .call(function onDisplayRestartTextFinished(){
+                            self.dispatchEvent('finishedPlaying');
                             finishedPlaying = true;
                         })));
         }

@@ -16,10 +16,35 @@ var rps = rps || {};
 
         var m = game.model;
 
+        var controlsDisabled = false;
+
+        /**
+         * Disable or enable the fields and controls
+         *
+         * @param {bool} disabled True to disable, false to enable
+         */
+        this.disableControls = function disableControls(disabled){
+            var controls = betControlDown.add(betControlUp);
+
+            controlsDisabled = disabled;
+
+            if(disabled){
+                controls.addClass('disabled');
+            }
+            else{
+                controls.removeClass('disabled');
+                updateFields();
+            }
+        };
+
         updateFields();
         m.addEventListener('propertyChanged', updateFields);
 
         betControlUp.add(betControlDown).on('click', function onBetControlClick(){
+            if(controlsDisabled){
+                return;
+            }
+
             if(this == betControlUp[0]){
                 m.betAmount += 100;
             }
@@ -29,6 +54,10 @@ var rps = rps || {};
         });
 
         function updateFields(){
+            if(controlsDisabled){
+                return;
+            }
+
             balanceField.text((m.balance / 100).toFixed(2));
             betsField.text((m.betAmount / 100).toFixed(2));
         }
