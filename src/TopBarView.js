@@ -42,7 +42,8 @@ var rps = rps || {};
             if(this == betControlUp[0]){
                 m.betAmount += 100;
             }
-            else{
+            else if(m.betAmount > 100){
+                // Bet amount cannot be 0
                 m.betAmount -= 100;
             }
         });
