@@ -16,32 +16,27 @@ var rps = rps || {};
 
         var m = game.model;
 
-        var controlsDisabled = false;
+        var isRoundInProgress = false,
+            previousBalance = 0;
 
         /**
          * Disable or enable the fields and controls
          *
          * @param {bool} disabled True to disable, false to enable
          */
-        this.disableControls = function disableControls(disabled){
+        this.roundInProgress = function roundInProgress(inProgress){
             var controls = betControlDown.add(betControlUp);
+            isRoundInProgress = inProgress;
 
-            controlsDisabled = disabled;
-
-            if(disabled){
-                controls.addClass('disabled');
-            }
-            else{
-                controls.removeClass('disabled');
-                updateFields();
-            }
+            controls[inProgress ? 'addClass' : 'removeClass']('disabled');
+            updateFields();
         };
 
         updateFields();
         m.addEventListener('propertyChanged', updateFields);
 
         betControlUp.add(betControlDown).on('click', function onBetControlClick(){
-            if(controlsDisabled){
+            if(isRoundInProgress){
                 return;
             }
 
@@ -54,12 +49,12 @@ var rps = rps || {};
         });
 
         function updateFields(){
-            if(controlsDisabled){
-                return;
-            }
-
-            balanceField.text((m.balance / 100).toFixed(2));
+            balanceField.text(((isRoundInProgress ? previousBalance - m.betAmount : m.balance) / 100).toFixed(2));
             betsField.text((m.betAmount / 100).toFixed(2));
+
+            if(!isRoundInProgress){
+                previousBalance = m.balance;
+            }
         }
     };
 

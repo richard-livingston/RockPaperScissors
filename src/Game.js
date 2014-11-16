@@ -32,17 +32,17 @@ var rps = rps || {};
 
         switchView(gameStartView);
         stage.addEventListener('handSelected', onHandSelected);
-        gameRevealView.addEventListener('finishedPlaying', topBarView.disableControls.bind(topBarView, false));
+        gameRevealView.addEventListener('finishedPlaying', topBarView.roundInProgress.bind(topBarView, false));
         gameRevealView.addEventListener('restart', switchView.bind(null, gameStartView));
 
         function onHandSelected(event){
-            topBarView.disableControls(true);
+            topBarView.roundInProgress(true);
 
             if(model.newRound(event.selection)){
                 switchView(gameRevealView);
             }
             else{
-                topBarView.disableControls(false);
+               topBarView.roundInProgress(false);
             }
         };
 
