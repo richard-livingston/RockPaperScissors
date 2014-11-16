@@ -27,7 +27,7 @@ var rps = rps || {};
         createjs.Ticker.addEventListener('tick', stage);
 
         // Set default values
-        model.balance = 10000;
+        model.balance = 2500;
         model.betAmount = 100;
 
         switchView(gameStartView);
