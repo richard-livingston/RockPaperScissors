@@ -16,8 +16,11 @@ var rps = rps || {};
 
         var self = this;
 
+        this.element = element;
+
         var stage = this.stage = new createjs.Stage(element.find('canvas')[0]),
             model = this.model = new rps.GameModel(),
+            topBarView = new rps.TopBarView(this),
             gameStartView = new rps.GameStartView(this),
             gameRevealView = new rps.GameRevealView(this);
 
