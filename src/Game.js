@@ -26,6 +26,10 @@ var rps = rps || {};
 
         createjs.Ticker.addEventListener('tick', stage);
 
+        // Set default values
+        model.balance = 10000;
+        model.betAmount = 100;
+
         switchView(gameStartView);
         stage.addEventListener('handSelected', onHandSelected);
         gameRevealView.addEventListener('restart', switchView.bind(null, gameStartView));
