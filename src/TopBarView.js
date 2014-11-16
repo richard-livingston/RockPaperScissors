@@ -6,6 +6,12 @@ var rps = rps || {};
 
 (function(){
 
+    /**
+     * Controls the HTML elements in the top bar
+     *
+     * @param {Game} game Current game instance
+     * @constructor
+     */
     function TopBarView(game){
 
         var topBar = $('.topBar', game.element),
