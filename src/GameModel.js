@@ -72,14 +72,14 @@ var rps = rps || {};
          * Create and process a new round.
          *
          * @param {string} playersMove The player's choice of move
-         * @returns {boolean} Returns false if the bet cannot be placed due to low balance
+         * @returns {boolean} Returns false if the bet cannot be placed due to low balance, or betAmount <= 0
          */
         this.newRound = function(playersMove){
             if(!~moves.indexOf(playersMove)){
                 throw new Error('Player\'s move must be one of: ' + moves.join(', ') + ', : ' + playersMove);
             }
 
-            if(_balance < _betAmount){
+            if(_balance < _betAmount || _betAmount <= 0){
                 return false;
             }
 
