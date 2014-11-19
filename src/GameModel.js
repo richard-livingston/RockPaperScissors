@@ -97,7 +97,7 @@ var rps = rps || {};
                 _roundWinnings = _betAmount;
             }
             else if(playerWins){
-                _roundWinnings = _betAmount * 3;
+                _roundWinnings = _betAmount * 2;
             }
             else{
                 _roundWinnings = 0;
